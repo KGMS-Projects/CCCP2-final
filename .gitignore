@@ -1,0 +1,30 @@
+# Compiled class files
+*.class
+target/
+*.jar
+*.war
+*.ear
+
+# Log files
+*.log
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Data files (optional - remove if you want to commit data)
+data/
+
+# Maven
+.mvn/
+mvn.cmd
+mvnw
+mvnw.cmd

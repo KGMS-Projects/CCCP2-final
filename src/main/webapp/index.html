@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYOS Online Store — Synex Outlet Store</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-icon">🛒</span>
+                <span class="logo-text">SYOS <span class="logo-sub">Online Store</span></span>
+            </div>
+            <nav class="nav">
+                <a href="#" onclick="showSection('products')" class="nav-link active" id="nav-products">Shop</a>
+                <a href="#" onclick="showSection('orders')" class="nav-link" id="nav-orders">My Orders</a>
+            </nav>
+            <div class="header-actions">
+                <div class="cart-icon" onclick="toggleCart()">
+                    <span>🛍️</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+                <div id="authSection">
+                    <button class="btn btn-outline" onclick="showModal('loginModal')">Login</button>
+                    <button class="btn btn-primary" onclick="showModal('registerModal')">Register</button>
+                </div>
+                <div id="userSection" style="display:none;">
+                    <span class="user-name" id="userName"></span>
+                    <button class="btn btn-outline" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Synex Outlet Store</h1>
+            <p>Fresh products delivered to your doorstep. Shop online, pay on delivery.</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="productsSection" class="section">
+        <div class="container">
+            <h2 class="section-title">Available Products</h2>
+            <div class="products-grid" id="productsGrid">
+                <div class="loading">Loading products...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Orders Section (hidden by default) -->
+    <section id="ordersSection" class="section" style="display:none;">
+        <div class="container">
+            <h2 class="section-title">My Orders</h2>
+            <div id="ordersList" class="orders-list">
+                <p class="empty-state">Login to view your order history</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <aside class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-btn" onclick="toggleCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-state">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span class="total-amount" id="cartTotal">Rs. 0.00</span>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="checkout()">Place Order</button>
+        </div>
+    </aside>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Login to Your Account</h3>
+                <button class="close-btn" onclick="hideModal('loginModal')">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="your@email.com" class="input">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" class="input">
+                </div>
+                <button class="btn btn-primary btn-block" onclick="login()">Login</button>
+                <p class="modal-link">Don't have an account? <a href="#" onclick="hideModal('loginModal');showModal('registerModal')">Register</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Create Account</h3>
+                <button class="close-btn" onclick="hideModal('registerModal')">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="regName" placeholder="John Doe" class="input">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="regEmail" placeholder="your@email.com" class="input">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" placeholder="••••••••" class="input">
+                </div>
+                <div class="form-group">
+                    <label>Delivery Address</label>
+                    <input type="text" id="regAddress" placeholder="123 Main St, City" class="input">
+                </div>
+                <button class="btn btn-primary btn-block" onclick="register()">Create Account</button>
+                <p class="modal-link">Already have an account? <a href="#" onclick="hideModal('registerModal');showModal('loginModal')">Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span id="toastMessage"></span>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Synex Outlet Store (Pvt) Ltd. All rights reserved. | SYOS Online Store</p>
+    </footer>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
