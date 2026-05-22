@@ -8,16 +8,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-/**
- * Main application frame with sidebar navigation and card layout.
- * Contains all GUI panels for the SYOS POS system.
- * 
- * GUI Features:
- * - SidebarPanel for modern navigation
- * - Status bar showing server connection and last action
- * - Real-time notification handling via server push
- * - Modern color scheme with professional styling
- */
+
 public class MainFrame extends JFrame {
 
     // Color scheme
@@ -172,8 +163,6 @@ public class MainFrame extends JFrame {
 
     /**
      * Listen for server push notifications to refresh displayed data.
-     * When any client modifies data, the server broadcasts a notification,
-     * and all connected clients refresh their views.
      */
     private void setupNotificationListener() {
         connection.addNotificationListener(response -> {

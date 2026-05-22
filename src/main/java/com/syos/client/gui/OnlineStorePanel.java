@@ -6,12 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.net.URI;
 
-/**
- * Online Store panel in the POS Swing GUI.
- * Since the Online Store is now a web application served by embedded Tomcat,
- * this panel shows a link to open it in the browser and displays online
- * sales/inventory info for management purposes.
- */
+
 public class OnlineStorePanel extends JPanel {
 
     private final ClientController controller;

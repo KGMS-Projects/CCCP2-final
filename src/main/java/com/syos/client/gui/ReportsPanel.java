@@ -8,10 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-/**
- * Reports panel for generating and viewing business reports.
- * Supports: Daily Sales, Reshelve, Reorder, Stock, and Bill reports.
- */
+
 public class ReportsPanel extends JPanel {
 
     private final ClientController controller;

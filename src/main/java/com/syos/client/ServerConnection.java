@@ -12,9 +12,6 @@ import java.util.concurrent.*;
 import java.util.function.Consumer;
 
 /**
- * Manages the TCP socket connection from the client to the server.
- * Provides asynchronous request-response communication.
- * 
  * Concurrency mechanisms:
  * - ConcurrentHashMap: Thread-safe storage for pending request futures.
  *   Allows multiple threads to send requests and receive responses simultaneously.

@@ -10,9 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * JSON-based implementation of UserRepository.
- */
+
 public class JsonUserRepository implements UserRepository {
     private static final String FILENAME = "users.json";
     private final JsonDataStore dataStore;

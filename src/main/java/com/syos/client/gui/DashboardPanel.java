@@ -8,10 +8,7 @@ import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Dashboard panel showing system overview with summary cards
- * and key metrics for the SYOS POS system.
- */
+
 public class DashboardPanel extends JPanel {
 
     private final ClientController controller;

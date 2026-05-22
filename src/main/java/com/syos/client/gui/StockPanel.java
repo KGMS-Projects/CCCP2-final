@@ -8,10 +8,7 @@ import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Stock management panel for batch tracking, adding stock, and transfers.
- * Features: batch listing, add batch dialog, store-to-shelf/online transfers.
- */
+
 public class StockPanel extends JPanel {
 
     private final ClientController controller;

@@ -1,18 +1,22 @@
 package com.syos.testclients;
 
-import com.syos.client.ServerConnection;
-import com.syos.common.Response;
-
-import java.util.*;
-import java.util.concurrent.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
+
+import com.syos.client.ServerConnection;
+import com.syos.common.Response;
 
 /**
  * Automatic Test Client 2 — Rapid Inventory Operations Simulator
  * 
  * Sends 50+ asynchronous inventory/stock requests in rapid succession.
- * Designed to run SIMULTANEOUSLY with TestClient1 to prove concurrent
+ * run SIMULTANEOUSLY with TestClient1 to prove concurrent
  * multi-client handling with request queuing on the server.
  * 
  * Concurrency mechanisms demonstrated:
@@ -101,19 +105,19 @@ public class TestClient2 {
                     if (response.isError()) {
                         errorCount.incrementAndGet();
                         System.out.printf("  [T%d-REQ %3d] FAILED (%.0fms): %s%n",
-                                Thread.currentThread().getId() % 100, requestNum,
+                                Math.abs(Thread.currentThread().getName().hashCode()) % 100, requestNum,
                                 (double) elapsed, response.getError());
                     } else {
                         successCount.incrementAndGet();
                         System.out.printf("  [T%d-REQ %3d] SUCCESS (%.0fms)%n",
-                                Thread.currentThread().getId() % 100, requestNum, (double) elapsed);
+                                Math.abs(Thread.currentThread().getName().hashCode()) % 100, requestNum, (double) elapsed);
                     }
                 } catch (Exception e) {
                     errorCount.incrementAndGet();
                     long elapsed = (System.nanoTime() - requestStart) / 1_000_000;
                     totalResponseTime.addAndGet(elapsed);
                     System.out.printf("  [T%d-REQ %3d] ERROR (%.0fms): %s%n",
-                            Thread.currentThread().getId() % 100, requestNum,
+                            Math.abs(Thread.currentThread().getName().hashCode()) % 100, requestNum,
                             (double) elapsed, e.getMessage());
                 } finally {
                     latch.countDown();

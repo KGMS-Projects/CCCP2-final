@@ -9,15 +9,8 @@ import com.syos.common.Response;
 import java.util.*;
 
 /**
- * Client-side controller that provides high-level business operations.
- * Acts as a proxy to the server — all data access goes through the network.
- * 
- * Clean Architecture role: Interface Adapter on the client side.
- * This controller translates GUI actions into server requests and
- * server responses into GUI-friendly data structures.
- * 
  * The client has NO direct database access. All operations go through
- * the server via TCP sockets, maintaining the 3-tier separation.
+ * the server via TCP sockets.
  */
 public class ClientController {
 

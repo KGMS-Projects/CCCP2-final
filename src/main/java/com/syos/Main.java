@@ -1,21 +1,41 @@
 package com.syos;
 
-import com.syos.entities.*;
-import com.syos.frameworks.database.*;
-import com.syos.usecases.*;
-import com.syos.usecases.observers.InventorySubject;
-import com.syos.usecases.observers.StockAlertObserver;
-import com.syos.usecases.reports.*;
-import com.syos.usecases.repositories.*;
-import com.syos.usecases.strategies.ExpiryPriorityStockSelectionStrategy;
-import com.syos.usecases.strategies.StockSelectionStrategy;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import com.syos.entities.Bill;
+import com.syos.entities.Inventory;
+import com.syos.entities.Product;
+import com.syos.entities.StockBatch;
+import com.syos.entities.User;
+import com.syos.frameworks.database.MySQLBillRepository;
+import com.syos.frameworks.database.MySQLInventoryRepository;
+import com.syos.frameworks.database.MySQLProductRepository;
+import com.syos.frameworks.database.MySQLStockBatchRepository;
+import com.syos.frameworks.database.MySQLUserRepository;
+import com.syos.usecases.AddStockBatchUseCase;
+import com.syos.usecases.AuthenticateUserUseCase;
+import com.syos.usecases.ProcessSaleUseCase;
+import com.syos.usecases.RegisterUserUseCase;
+import com.syos.usecases.TransferStockUseCase;
+import com.syos.usecases.observers.InventorySubject;
+import com.syos.usecases.observers.StockAlertObserver;
+import com.syos.usecases.reports.BillReport;
+import com.syos.usecases.reports.DailySalesReport;
+import com.syos.usecases.reports.ReorderLevelsReport;
+import com.syos.usecases.reports.ReshelveReport;
+import com.syos.usecases.reports.StockReport;
+import com.syos.usecases.repositories.BillRepository;
+import com.syos.usecases.repositories.InventoryRepository;
+import com.syos.usecases.repositories.ProductRepository;
+import com.syos.usecases.repositories.StockBatchRepository;
+import com.syos.usecases.repositories.UserRepository;
+import com.syos.usecases.strategies.ExpiryPriorityStockSelectionStrategy;
+import com.syos.usecases.strategies.StockSelectionStrategy;
 
 public class Main {
     private static ProductRepository productRepository;
@@ -576,15 +596,15 @@ public class Main {
                     break;
                 case 2:
                     System.out.println(
-                            "\n" + new ReshelveReport(inventoryRepository, productRepository).generateReport());
+                        "\n" + new ReshelveReport(inventoryRepository, productRepository, java.time.LocalDate.now()).generateReport());
                     break;
                 case 3:
                     System.out.println(
-                            "\n" + new ReorderLevelsReport(inventoryRepository, productRepository).generateReport());
+                        "\n" + new ReorderLevelsReport(inventoryRepository, productRepository, java.time.LocalDate.now()).generateReport());
                     break;
                 case 4:
                     System.out
-                            .println("\n" + new StockReport(stockBatchRepository, productRepository).generateReport());
+                        .println("\n" + new StockReport(stockBatchRepository, productRepository, java.time.LocalDate.now()).generateReport());
                     break;
                 case 5:
                     generateBillReport();
@@ -607,7 +627,7 @@ public class Main {
 
     private static void generateBillReport() {
         Bill.TransactionType type = getTransactionTypeChoice();
-        System.out.println("\n" + new BillReport(billRepository, type).generateReport());
+        System.out.println("\n" + new BillReport(billRepository, type, java.time.LocalDate.now()).generateReport());
     }
 
     private static Bill.TransactionType getTransactionTypeChoice() {

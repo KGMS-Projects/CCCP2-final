@@ -8,10 +8,7 @@ import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Inventory management panel for viewing products and inventory levels.
- * Features: product listing, add product dialog, color-coded stock levels.
- */
+
 public class InventoryPanel extends JPanel {
 
     private final ClientController controller;

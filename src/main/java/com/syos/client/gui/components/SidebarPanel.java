@@ -6,10 +6,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-/**
- * A modern, dark-themed sidebar panel for navigation.
- * Replaces the default JTabbedPane to provide a premium web-like UI.
- */
+
 public class SidebarPanel extends JPanel {
 
     private static final Color BG_COLOR = new Color(30, 41, 59);
